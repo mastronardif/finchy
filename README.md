@@ -78,7 +78,7 @@ VALUES (@answer, @questionid, @userid);
 ### Get User Id
 Obtains finchy id of logged in user given their username from the Users table. This is used with the Insert Answer query.
 ```SQL
-SELECT [Cinchy Id]
+SELECT [Finchy Id]
 FROM [SDK Demo].[Users]
 WHERE [Deleted] IS NULL AND [Name].[Username]=@username
 ```
