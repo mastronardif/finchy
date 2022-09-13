@@ -8,9 +8,9 @@ Before running the app, you need to import the [SDK Demo Model.xml](https://gith
 
 Within the main `app.component.ts` file, there is a FinchyConfig object that is declared at the beginning. You must config it to work with your Finchy instance.
 ```typescript
-export const MyCinchyAppConfig: FinchyConfig = {
-  cinchyRootUrl: 'http://qa1-app1.finchy.co',
-  authority: 'http://qa1-sso.cinchy.co/FinchySSO/identity',
+export const MyFinchyAppConfig: FinchyConfig = {
+  finchyRootUrl: 'http://qa1-app1.finchy.co',
+  authority: 'http://qa1-sso.finchy.co/FinchySSO/identity',
   redirectUri: 'http://localhost:3000/',
   clientId: 'alvin-rest-sample'
 };
@@ -37,7 +37,7 @@ You must also add the corresponding queries for the demo to work.
 ### Get Questions
 Obtains all the questions.
 ```SQL
-SELECT [Cinchy Id] as QuestionId, [Question], [Asker].[Name].[Name] as AskerName, [Asker].[Name].[Username] as AskerUsername, [Location], [Asker].[Name].[Profile Photo] as AskerPhoto
+SELECT [Finchy Id] as QuestionId, [Question], [Asker].[Name].[Name] as AskerName, [Asker].[Name].[Username] as AskerUsername, [Location], [Asker].[Name].[Profile Photo] as AskerPhoto
 FROM [SDK Demo].[Questions]
 WHERE [Deleted] IS NULL
 ```
@@ -61,7 +61,7 @@ Obtains the questions given the question id.
 ```SQL
 SELECT [Answer], [User].[Name].[Name] as Name, [User].[Name].[Username] as Username, [User].[Name].[Profile Photo] as AnswererPhoto
 FROM [SDK Demo].[Answers]
-WHERE [Deleted] IS NULL AND [Question].[Cinchy Id] = @questionid
+WHERE [Deleted] IS NULL AND [Question].[Finchy Id] = @questionid
 ```
 
 <a name="insert_answer"></a>
@@ -76,7 +76,7 @@ VALUES (@answer, @questionid, @userid);
 <a name="get_user_id"></a>
 
 ### Get User Id
-Obtains cinchy id of logged in user given their username from the Users table. This is used with the Insert Answer query.
+Obtains finchy id of logged in user given their username from the Users table. This is used with the Insert Answer query.
 ```SQL
 SELECT [Cinchy Id]
 FROM [SDK Demo].[Users]
@@ -85,4 +85,4 @@ WHERE [Deleted] IS NULL AND [Name].[Username]=@username
 
 
 ## License
-This project is license under the terms of the [GNU General Public License v3.0](https://github.com/cinchy-co/angular-sdk/blob/master/LICENSE)
+This project is license under the terms of the [GNU General Public License v3.0]
