@@ -1,21 +1,21 @@
 # SdkDemo
 
-This project was created to demonstrate the capabilities of the Cinchy Angular SDK.
+This project was created to demonstrate the capabilities of the Finchy Angular SDK.
 
 ## Usage
+<!-- 
+Before running the app, you need to import the [SDK Demo Model.xml](https://github.com/finchy-co/angular-sdk/blob/master/sdk-demo/SDK%20Demo%20Model.xml) file into your Finchy instance and build the queries needed. -->
 
-Before running the app, you need to import the [SDK Demo Model.xml](https://github.com/cinchy-co/angular-sdk/blob/master/sdk-demo/SDK%20Demo%20Model.xml) file into your Cinchy instance and build the queries needed.
-
-Within the main `app.component.ts` file, there is a CinchyConfig object that is declared at the beginning. You must config it to work with your Cinchy instance.
+Within the main `app.component.ts` file, there is a FinchyConfig object that is declared at the beginning. You must config it to work with your Finchy instance.
 ```typescript
-export const MyCinchyAppConfig: CinchyConfig = {
-  cinchyRootUrl: 'http://qa1-app1.cinchy.co',
-  authority: 'http://qa1-sso.cinchy.co/CinchySSO/identity',
+export const MyCinchyAppConfig: FinchyConfig = {
+  cinchyRootUrl: 'http://qa1-app1.finchy.co',
+  authority: 'http://qa1-sso.cinchy.co/FinchySSO/identity',
   redirectUri: 'http://localhost:3000/',
   clientId: 'alvin-rest-sample'
 };
 ```
-`cinchyRootUrl` is the URL to your own Cinchy instance.
+`finchyRootUrl` is the URL to your own Finchy instance.
 `authority` is the URL to your own IdentityServer.
 `redirectUri` is the URL to your application after logging in.
 `clientId` is the Id of the integrated app. You need to register your application before running it by inserting the app's info into the Integrated Apps table.
