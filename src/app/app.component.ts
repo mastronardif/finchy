@@ -6,7 +6,6 @@ import { IAnswer, Answer } from "./Answer";
 import { DomSanitizer } from "@angular/platform-browser";
 import { FinchyService } from "./shared/services/finchy/finchy.service";
 import { FinchyConfig } from "./shared/services/finchy/finchy.config";
-import { FUserService } from "./shared/services/fgreeting/fuser.service";
 
 export const MyCinchyAppConfig: FinchyConfig = {
   finchyRootUrl: "http://localhost",
@@ -36,8 +35,7 @@ export class AppComponent {
 
   userIdentity: object;
 
-  constructor(private _fUserService: FUserService,
-    private _finchyService: FinchyService,
+  constructor(private _finchyService: FinchyService,
     private _domSanitizer: DomSanitizer
   ) {
     this._finchyService
@@ -52,7 +50,6 @@ export class AppComponent {
         console.log(error);
       });
 
-    console.log("_fUserService.userName22=", this._fUserService.userName22);
 
     // this._cinchyService.login().then( response => {
     //   console.log(response);

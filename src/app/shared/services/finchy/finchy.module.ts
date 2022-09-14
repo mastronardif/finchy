@@ -1,6 +1,7 @@
 import { ModuleWithProviders, NgModule, Optional, SkipSelf } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FinchyServiceConfig } from './finchy.service';
+import { FinchyGlobalConfig } from './finchy.global.config';
 //import { FinchyConfig } from './finchy.config';
 // export * from './finchy.service';
 // export * from './finchy.config';
@@ -27,7 +28,7 @@ export  class FinchyModule {
   static forRoot(config: FinchyServiceConfig): ModuleWithProviders<FinchyModule> {
     return {
       ngModule: FinchyModule,
-      providers: [
+      providers: [ FinchyGlobalConfig,
         {provide: FinchyServiceConfig, useValue: config }
       ]
     };

@@ -1,8 +1,10 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable, Optional } from '@angular/core';
+import { OAuthService, AuthConfig, OAuthStorage } from 'angular-oauth2-oidc';
 import { Observable, throwError } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
 import { FinchyConfig } from './finchy.config';
+import { FinchyGlobalConfig } from './finchy.global.config';
 //import { FinchyGlobalConfig } from './finchy.global.config';
 
 export class FinchyServiceConfig {
@@ -22,24 +24,54 @@ export class FinchyService {
   _finchyConfig: FinchyConfig;
   private finchyRootUrl;
   constructor(private _httpClient: HttpClient,
-  @Optional() config?: FinchyServiceConfig,
-    //private _finchyGlobalConfig: FinchyGlobalConfig,
+    private _finchyGlobalConfig: FinchyGlobalConfig, @Optional() private config?: FinchyServiceConfig,
    // @Inject(FinchyConfig) private config: FinchyConfig
    )
     {
-      if (config) {
-        // this._userName = config.userName;
-        // this._userName22 = config.userName22;
-        this._finchyConfig = config.finchyConfig;
-        this.finchyRootUrl = config.finchyConfig.finchyRootUrl;
-        console.log('this._finchyConfig= ', this._finchyConfig);
-      }
+      this._finchyGlobalConfig.setUserValues(this.config.finchyConfig);
+      this.finchyRootUrl = this.config.finchyConfig.finchyRootUrl;
+
+      // if (config) {
+      //   // this._userName = config.userName;
+      //   // this._userName22 = config.userName22;
+      //   ////this._finchyConfig = config.finchyConfig;
+      //   //this.finchyRootUrl = config.finchyConfig.finchyRootUrl;
+      //   console.log('this._finchyConfig= ', this._finchyConfig);
+      // }
     //this._finchyGlobalConfig.setUserValues(this.config);
     //this.finchyRootUrl = this.config.finchyRootUrl;
+    console.log('this._finchyGlobalConfig= ', this._finchyGlobalConfig);
+    console.log('this.config= ', this.config);
   }
 
   login(redirectUriOverride?: string): Promise<Boolean> {
+    let redirectUri;
+    if (redirectUriOverride) {
+      redirectUri = redirectUriOverride;
+  } else {
+      redirectUri = this._finchyGlobalConfig.redirectUri;// config.finchyConfig.redirectUri; // _finchyGlobalConfig.redirectUri;
+  }
+
     console.log(`: login ${redirectUriOverride}`);
+
+  //   const authConfig: AuthConfig = {
+  //     issuer: this._finchyGlobalConfig.authority,
+  //     redirectUri: redirectUri,
+  //     clientId: this._finchyGlobalConfig.clientId,
+  //     scope: this._finchyGlobalConfig.scope,
+  //     responseType: this._finchyGlobalConfig.responseType,
+  //     requireHttps: this._finchyGlobalConfig.requireHttps,
+  //     sessionChecksEnabled: this._finchyGlobalConfig.sessionChecksEnabled,
+  //     postLogoutRedirectUri: this._finchyGlobalConfig.logoutRedirectUri,
+  //     useIdTokenHintForSilentRefresh: this._finchyGlobalConfig.useIdTokenHintForSilentRefresh,
+  //     silentRefreshRedirectUri: this._finchyGlobalConfig.silentRefreshRedirectUri
+  // };
+
+  console.log('_finchyGlobalConfig= ', this._finchyConfig);
+  //console.log('authConfig= ', authConfig);
+
+
+
     return new Promise((resolve, reject) => resolve(false || !redirectUriOverride));
   }
 

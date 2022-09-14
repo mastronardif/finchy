@@ -9,7 +9,6 @@ import { AppComponent } from './app.component';
 //import { FinchyModule } from './shared/services/finchy.module';
 /* Feature Modules */
 import { GreetingModule } from './shared/services/greeting/greeting.module';
-import { FGreetingModule } from './shared/services/fgreeting/fgreeting.module';
 
 import { FinchyService } from './shared/services/finchy/finchy.service';
 
@@ -32,11 +31,6 @@ import { FinchyConfig } from './shared/services/greeting/finchy.config';
     HttpClientModule,
     FormsModule,
 
-    FGreetingModule.forRoot({
-      userName: 'Miss 2222',
-      userName22: 'pppppp',
-      finchyConfig: {authority:'aaaaa', clientId:'FGreeting',redirectUri:'',finchyRootUrl:'',logoutRedirectUri:'',scope:'',silentRefreshEnabled:true, silentRefreshRedirectUri:''}
-    }),
     GreetingModule.forRoot({
       userName: 'Miss Marple',
       //userName22: 'pppppp',
@@ -44,7 +38,7 @@ import { FinchyConfig } from './shared/services/greeting/finchy.config';
     }),
 
     FinchyModule.forRoot({
-      finchyConfig: { authority: '', clientId: 'cccc', redirectUri: '', finchyRootUrl: 'http://localhost:9000', logoutRedirectUri: '', scope: '', silentRefreshEnabled: true, silentRefreshRedirectUri: '' },
+      finchyConfig: { authority: '', clientId: 'cccc', redirectUri: 'http://localhost:4200/', finchyRootUrl: 'http://localhost:9000', logoutRedirectUri: '', scope: '', silentRefreshEnabled: true, silentRefreshRedirectUri: '' },
       userName: '',
       userName22: ''
     }),
